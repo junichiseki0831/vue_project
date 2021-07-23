@@ -1,13 +1,5 @@
 <template>
-  <p>いいね({{ number }})</p>
+  <!-- グローバル登録した<LikeNumber>を使用する。 -->
+  <LikeNumber></LikeNumber>
 </template>
 
-<script>
-  export default {
-    data() {
-      return {
-        number: 5
-      }
-    }
-  }
-</script>
