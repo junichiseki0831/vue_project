@@ -9,7 +9,7 @@
 
 <script>
 //./LikeHeader.vueをインポート
-import LikeHeader from "./LikeHeader.vue"
+import LikeHeader from "./components/LikeHeader.vue"
 
 export default {
   //ローカルに<LikeHeader>コンポーネントを登録する。
