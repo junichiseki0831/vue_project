@@ -1,9 +1,14 @@
 <template>
   <div>
     <!-- ローカル登録した<LikeHeader>を使用する。 -->
+    <!-- v-slotで子コンポーネントにhtmlを分割して渡す。 -->
     <LikeHeader>
-      <h1>トータルのいいね数</h1>
-      <h2>{{ number }}</h2>
+      <template v-slot:title>
+        <h1>トータルのいいね数</h1>
+      </template>
+      <template v-slot:number>
+        <h2>{{ number }}</h2>
+      </template>
     </LikeHeader>
     <!-- グローバル登録した<LikeNumber>を使用する。 -->
     <!-- :total-number="number" 親から取得した値を動的に描画する。 -->

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <slot></slot>
+    <!-- titleのみの適応 -->
+    <slot name="title"></slot>
+    <!-- numberのみの適応 -->
+    <slot name="number"></slot>
   </div>
 </template>
 
