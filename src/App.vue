@@ -11,8 +11,8 @@
     <!-- <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber> -->
     <!-- @my-click="incrementNumber" カスタムイベントを発火させて、自らのmethodsを作動させるやり方。 -->
     <LikeNumber :total-number="number" @my-click="incrementNumber"></LikeNumber>
-    <LikeNumber :total-number="number" @my-click="incrementNumber"></LikeNumber>
-    <LikeNumber :total-number="number"></LikeNumber>
+    <!-- @my-click="$event"     子から取得した取得した値を$eventで取得し{{ number }}（data:number)に反映する。 -->
+    <!-- <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber> -->
   </div>
 </template>
 
