@@ -12,12 +12,13 @@
     props: {
       totalNumber: {
         type: Number,
-        //default: 5,
-        default: function() {
-          return {
-            number: 5
-          }
-        }
+        default: 5
+        //defaultにオブジェクトで指定する場合↓
+        // default: function() {
+        //   return {
+        //     number: 5
+        //   }
+        // }
       }
     },
     computed: {
