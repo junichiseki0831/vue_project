@@ -5,8 +5,8 @@
     <h2>{{ number }}</h2>
     <!-- グローバル登録した<LikeNumber>を使用する。 -->
     <!-- 親から取得した値を動的に描画する。 -->
-    <LikeNumber :number="number"></LikeNumber>
-    <LikeNumber :number="number"></LikeNumber>
+    <LikeNumber :total-number="number"></LikeNumber>
+    <LikeNumber :total-number="number"></LikeNumber>
   </div>
 </template>
 

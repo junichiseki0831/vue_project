@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>いいね({{ number / 2 }})</p>
+    <p>いいね({{ halfNumber }})</p>
     <button @click="increment">+1</button>
   </div>
 </template>
@@ -8,7 +8,12 @@
 <script>
   export default {
     //親コンポーネント(App.vue)から子コンポーネント(LikeNumber)へデータを渡す
-    props: ["number"],
+    props: ["totalNumber"],
+    computed: {
+      halfNumber() {
+        return this.totalNumber / 2
+      }
+    },
     methods: {
       increment() {
         this.number += 1;
