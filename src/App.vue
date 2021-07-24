@@ -1,11 +1,17 @@
 <template>
   <div>
     <!-- ローカル登録した<LikeHeader>を使用する。 -->
-    <LikeHeader></LikeHeader>
-    <h2>{{ number }}</h2>
+    <LikeHeader>
+      <h1>トータルのいいね数</h1>
+      <h2>{{ number }}</h2>
+    </LikeHeader>
     <!-- グローバル登録した<LikeNumber>を使用する。 -->
-    <!-- 親から取得した値を動的に描画する。 -->
-    <LikeNumber :total-number="number"></LikeNumber>
+    <!-- :total-number="number" 親から取得した値を動的に描画する。 -->
+    <!-- @my-click="number = $eventt"     子から取得した取得した値を$eventで取得し{{ number }}（data:number)に反映する。 -->
+    <!-- <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber> -->
+    <!-- @my-click="incrementNumber" カスタムイベントを発火させて、自らのmethodsを作動させるやり方。 -->
+    <LikeNumber :total-number="number" @my-click="incrementNumber"></LikeNumber>
+    <LikeNumber :total-number="number" @my-click="incrementNumber"></LikeNumber>
     <LikeNumber :total-number="number"></LikeNumber>
   </div>
 </template>
@@ -17,12 +23,18 @@ import LikeHeader from "./components/LikeHeader.vue"
 export default {
   data() {
     return { 
-      number: 10
+      number: 14
     }
   },
   //ローカルに<LikeHeader>コンポーネントを登録する。
   components: {
     LikeHeader
+  },
+  methods: {
+    //引数にvalueを使用することにより、$emitで渡された子コンポーネントの値が渡される。
+    incrementNumber(value) {
+      this.number = value  
+    }
   }
 }
 </script>

@@ -28,7 +28,8 @@
     },
     methods: {
       increment() {
-        this.number += 1;
+        //$emitでカスタムイベント作成と子コンポーネントの値を親コンポーネントに渡す
+        this.$emit("my-click", this.totalNumber + 1)
       }
     }
   }
