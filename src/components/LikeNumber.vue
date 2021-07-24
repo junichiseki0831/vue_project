@@ -8,7 +8,18 @@
 <script>
   export default {
     //親コンポーネント(App.vue)から子コンポーネント(LikeNumber)へデータを渡す
-    props: ["totalNumber"],
+    //propsにバリデーションをかける
+    props: {
+      totalNumber: {
+        type: Number,
+        //default: 5,
+        default: function() {
+          return {
+            number: 5
+          }
+        }
+      }
+    },
     computed: {
       halfNumber() {
         return this.totalNumber / 2
