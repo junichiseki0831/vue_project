@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>Home</p>
-    <input type="text">
+    <p v-border>Home</p>
   </div>
 </template>
