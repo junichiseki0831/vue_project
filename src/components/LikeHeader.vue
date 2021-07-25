@@ -9,6 +9,13 @@
 
 <script>
 export default {
-  props: ["headerText"]
+  data() {
+    return {
+      user: {
+        firstName: "Jack",
+        secondName: "Donald"
+      }
+    }
+  }
 }
 </script>

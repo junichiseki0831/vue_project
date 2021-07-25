@@ -10,6 +10,10 @@
         <h2>{{ number }}</h2>
       </template>
     </LikeHeader>
+    <button @click="currentComponent = 'Home'">Home</button>
+    <button @click="currentComponent = 'About'">About</button>
+    <!-- componentタグとis属性で表示するコンポーネントを動的に変更する。 -->
+    <component :is="currentComponent"></component>
     <!-- グローバル登録した<LikeNumber>を使用する。 -->
     <!-- :total-number="number" 親から取得した値を動的に描画する。 -->
     <!-- @my-click="number = $eventt"     子から取得した取得した値を$eventで取得し{{ number }}（data:number)に反映する。 -->
@@ -18,22 +22,28 @@
     <LikeNumber :total-number="number" @my-click="incrementNumber"></LikeNumber>
     <!-- @my-click="$event"     子から取得した取得した値を$eventで取得し{{ number }}（data:number)に反映する。 -->
     <!-- <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber> -->
+
   </div>
 </template>
 
 <script>
 //./LikeHeader.vueをインポート
 import LikeHeader from "./components/LikeHeader.vue"
+import Home from "./components/Home.vue"
+import About from "./components/About.vue"
 
 export default {
   data() {
     return { 
-      number: 14
+      number: 14,
+      currentComponent: Home
     }
   },
   //ローカルに<LikeHeader>コンポーネントを登録する。
   components: {
-    LikeHeader
+    LikeHeader,
+    Home,
+    About
   },
   methods: {
     //引数にvalueを使用することにより、$emitで渡された子コンポーネントの値が渡される。
