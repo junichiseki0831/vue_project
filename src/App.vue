@@ -27,6 +27,16 @@
       <component :is="currentComponent"></component>
     </keep-alive>
 
+    <div>
+      <h2>イベントのフォーム</h2>
+      <label for="title">タイトル</label>
+      <input id="title" type="text" v-model="eventDate.title">
+      <p>{{ eventDate.title }}</p>
+
+      <input type="checkbox" id="isPrivate">
+      <label for="isPrivate">非公開</label>
+    </div>
+
   </div>
 </template>
 
@@ -40,7 +50,10 @@ export default {
   data() {
     return { 
       number: 14,
-      currentComponent: Home
+      currentComponent: Home,
+      eventDate: {
+        title: 'タイトル'
+      }
     }
   },
   //ローカルに<LikeHeader>コンポーネントを登録する。
