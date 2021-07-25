@@ -13,7 +13,11 @@
     <button @click="currentComponent = 'Home'">Home</button>
     <button @click="currentComponent = 'About'">About</button>
     <!-- componentタグとis属性で表示するコンポーネントを動的に変更する。 -->
-    <component :is="currentComponent"></component>
+    <!-- keep-aliveは動的コンポーネントで切り替えのたびにインスタンス削除されることを防ぐ。 -->
+    <keep-alive>
+      <component :is="currentComponent"></component>
+    </keep-alive>
+    
     <!-- グローバル登録した<LikeNumber>を使用する。 -->
     <!-- :total-number="number" 親から取得した値を動的に描画する。 -->
     <!-- @my-click="number = $eventt"     子から取得した取得した値を$eventで取得し{{ number }}（data:number)に反映する。 -->
