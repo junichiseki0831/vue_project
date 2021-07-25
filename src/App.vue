@@ -9,15 +9,7 @@
       <template v-slot:number>
         <h2>{{ number }}</h2>
       </template>
-    </LikeHeader>
-    <button @click="currentComponent = 'Home'">Home</button>
-    <button @click="currentComponent = 'About'">About</button>
-    <!-- componentタグとis属性で表示するコンポーネントを動的に変更する。 -->
-    <!-- keep-aliveは動的コンポーネントで切り替えのたびにインスタンス削除されることを防ぐ。 -->
-    <keep-alive>
-      <component :is="currentComponent"></component>
-    </keep-alive>
-    
+    </LikeHeader>    
     <!-- グローバル登録した<LikeNumber>を使用する。 -->
     <!-- :total-number="number" 親から取得した値を動的に描画する。 -->
     <!-- @my-click="number = $eventt"     子から取得した取得した値を$eventで取得し{{ number }}（data:number)に反映する。 -->
@@ -26,6 +18,14 @@
     <LikeNumber :total-number="number" @my-click="incrementNumber"></LikeNumber>
     <!-- @my-click="$event"     子から取得した取得した値を$eventで取得し{{ number }}（data:number)に反映する。 -->
     <!-- <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber> -->
+
+    <button @click="currentComponent = 'Home'">Home</button>
+    <button @click="currentComponent = 'About'">About</button>
+    <!-- componentタグとis属性で表示するコンポーネントを動的に変更する。 -->
+    <!-- keep-aliveは動的コンポーネントで切り替えのたびにインスタンス削除されることを防ぐ。 -->
+    <keep-alive>
+      <component :is="currentComponent"></component>
+    </keep-alive>
 
   </div>
 </template>
@@ -57,9 +57,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  div {
-    border: 1px solid blue;
-  }
-</style>

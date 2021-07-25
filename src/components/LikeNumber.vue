@@ -13,12 +13,6 @@
       totalNumber: {
         type: Number,
         default: 5
-        //defaultにオブジェクトで指定する場合↓
-        // default: function() {
-        //   return {
-        //     number: 5
-        //   }
-        // }
       }
     },
     computed: {
@@ -34,9 +28,3 @@
     }
   }
 </script>
-
-<style scoped>
-  div {
-    border: 1px solid red;
-  }
-</style>
