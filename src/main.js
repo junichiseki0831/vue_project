@@ -8,6 +8,7 @@ Vue.component('LikeNumber', LikeNumber);
 //カスタムディレクティブを定義（bindとupdateの省略記法）
 Vue.directive("border", function(el, binding) {
   el.style.border = "solid black 2px";
+  el.style.borderWidth = binding.value;
 });
 
 new Vue({
