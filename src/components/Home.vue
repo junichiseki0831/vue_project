@@ -4,8 +4,8 @@
     <!-- 引数(solid)・修飾子(round.shadow)を指定 -->
     <p v-border:solid.round.shadow="{width: '5px', color: 'red'}">Home</p>
     <!-- フィルターを使った表示 -->
-    <h2>{{ title | lowerCase }}</h2>
-    <p>{{ subTitle | upperCase }}</p>
+    <h2>{{ title | lowerCase | upperCase}}</h2>
+    <p>{{ subTitle | upperCase | lowerCase}}</p>
   </div>
 </template>
 
