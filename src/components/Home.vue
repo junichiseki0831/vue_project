@@ -3,11 +3,26 @@
     <!-- bindingにオブジェクトでデータを渡す -->
     <!-- 引数(solid)・修飾子(round.shadow)を指定 -->
     <p v-border:solid.round.shadow="{width: '5px', color: 'red'}">Home</p>
+    <!-- フィルターを使った表示 -->
+    <h2>{{ title | lowerCase }}</h2>
+    <p>{{ subTitle | upperCase }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      title: "Welcome to Tokyo",
+      subTitle: "Tokyo is a great city"
+    };
+  },
+  //ローカルfilter登録
+  filters: {
+    lowerCase(value) {
+      return value.toLowerCase();
+    }
+  },
   // カスタムディレクティブのローカル登録
   directives: {
     border(el, binding) {
