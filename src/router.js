@@ -8,6 +8,7 @@ Vue.use(Router);
 
 // Routerをエクスポートする
 export default new Router({
+  //hashからhistoryモードへ変更
   mode: "history",
   //ルーティング先とコンポーネントをマッピングする
   routes: [{path: '/', component: Home}, {path: '/users', component: Users}]
