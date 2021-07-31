@@ -34,7 +34,28 @@ export default new Router({
         {path: "posts", component: UsersPosts},
         {path: "profile", component: UsersProfile, name: "users-id-profile"},
       ]
+    },
+    {
+      //登録したURL以外が指定された場合は"/"へリダイレクトする
+      path: "*",
+      redirect: "/"
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    return new Promise(resolve => {
+      this.app.$root.$once('triggerScroll', () => {
+        let position = {x: 0, y: 0};
+        if (savedPosition) {
+          position = savedPosition;
+        }
+        if (to.hash) {
+          position = {
+            selector: to.hash
+          };
+        }
+        resolve(position);
+      });
+    });
+  }
 });
 
