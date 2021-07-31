@@ -3,7 +3,7 @@
     <h3>Users</h3>
     <hr>
     <h1>User No. {{ id }}</h1>
-    <router-view></router-view>
+    <router-link :to="{ name: users-id-profiles, params: { id: Number(id) + 1}}">次のユーザー</router-link>
   </div>
 </template>
 

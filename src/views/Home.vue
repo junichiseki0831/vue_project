@@ -10,7 +10,10 @@ export default {
   methods: {
     toUsers() {
       //router経由で画面の切り替え
-      this.$router.push('users');
+      this.$router.push({
+        name: "users-id-profile",
+        params: {id: 1}
+      });
     }
   }
 }
