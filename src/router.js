@@ -11,6 +11,6 @@ export default new Router({
   //hashからhistoryモードへ変更
   mode: "history",
   //ルーティング先とコンポーネントをマッピングする
-  routes: [{path: '/', component: Home}, {path: '/users', component: Users}]
+  routes: [{path: '/', component: Home}, {path: '/users/:id', component: Users}]
 });
 
