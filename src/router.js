@@ -4,6 +4,8 @@ import Home from './views/Home.vue';
 import Users from './views/Users.vue';
 import UsersPosts from './views/UsersPosts.vue';
 import UsersProfile from './views/UsersProfile.vue';
+import HeaderHome from './views/HeaderHome.vue';
+import HeaderUsers from './views/HeaderUsers.vue';
 
 // Routerを使用する宣言
 Vue.use(Router);
@@ -14,9 +16,16 @@ export default new Router({
   mode: "history",
   //ルーティング先とコンポーネントをマッピングする
   routes: [
-    {path: '/', component: Home}, 
+    {path: '/', components: {
+      default: Home,
+      header: HeaderHome
+    }
+  },   
     { path: '/users/:id',
-      component: Users,
+      components: {
+        default: Users,
+        header: HeaderUsers
+      },
       props: true,
       children: [
         {path: "posts", component: UsersPosts},
