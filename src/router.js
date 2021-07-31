@@ -8,6 +8,7 @@ Vue.use(Router);
 
 // Routerをエクスポートする
 export default new Router({
+  mode: "history",
   //ルーティング先とコンポーネントをマッピングする
   routes: [{path: '/', component: Home}, {path: '/users', component: Users}]
 });
