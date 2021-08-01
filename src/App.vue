@@ -2,7 +2,7 @@
   <div>
     <router-view name="header"></router-view>
     <!-- router-viewにトランジションを適用 -->
-    <transition name="fade" mode="out-in" @before-enter="beforeEnter">
+    <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
     
