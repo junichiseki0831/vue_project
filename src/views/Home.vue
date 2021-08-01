@@ -2,16 +2,20 @@
   <div>
     <h3>Home</h3>
     <button @click="toUsers">Usersへ</button>
-    <p>{{ count }}</p>
+    <p>{{ doubleCount }}</p>
+    <p>{{ tripleCount }}</p>
   </div>
 </template>
 
 <script>
 export default {
   computed: {
-    count() {
+    doubleCount() {
       //vuexによって$storeにアクセスすることが可能になる
-      return this.$store.state.count;
+      return this.$store.getters.doubleCount;
+    },
+    tripleCount() {
+      return this.$store.getters.tripleCount;
     }
   },
   methods: {
