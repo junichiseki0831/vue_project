@@ -20,5 +20,15 @@ export default new Vuex.Store({
     decrement(state, number) {
       state.count -= number;
     }
+  },
+  actions: {
+    increment({ commit }, number) {
+      //mutationsのincrementをcommit（実行）
+      commit('increment', number);
+    },
+    decrement({ commit }, number) {
+      //mutationsのincrementをcommit（実行）
+      commit('decrement', number);
+    }
   }
 })
