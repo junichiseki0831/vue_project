@@ -8,15 +8,14 @@
 </template>
 
 <script>
+//mapGettersをインポート
+import { mapGetters } from "vuex";
+
 export default {
   computed: {
-    doubleCount() {
-      //vuexによって$storeにアクセスすることが可能になる
-      return this.$store.getters.doubleCount;
-    },
-    tripleCount() {
-      return this.$store.getters.tripleCount;
-    }
+    //まとめて書くことができる
+    //...はオブジェクトを記述するためのES6スプレッド演算子
+    ...mapGetters(["doubleCount", "tripleCount"]),
   },
   methods: {
     toUsers() {
