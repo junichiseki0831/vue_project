@@ -24,16 +24,14 @@ export default {
       comment: ""
     }
   },
+  //created時にgetでデータを取得する
   created() {
     axios.get(
        "https://firestore.googleapis.com/v1/projects/vuejs-http-38403/databases/(default)/documents/comments"
     )
     .then(response => {
       console.log(response);
-    })
-    .catch(error => {
-      console.log(error);
-    })
+    });
   },
   methods: {
     //axiosにpostでデータを送信するメソッド
