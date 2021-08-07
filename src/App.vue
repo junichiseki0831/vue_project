@@ -32,7 +32,8 @@ export default {
   //created時にgetでデータを取得する
   created() {
     axios.get(
-       "https://firestore.googleapis.com/v1/projects/vuejs-http-38403/databases/(default)/documents/comments"
+        //baseURL設定により短縮したURLで記述可能になる
+       "/comments"
     )
     //成功
     .then(response => {
@@ -44,7 +45,7 @@ export default {
     //axiosにpostでデータを送信するメソッド
     createComment() {
       axios.post(
-        "https://firestore.googleapis.com/v1/projects/vuejs-http-38403/databases/(default)/documents/comments",
+        "/comments",
         {
           fields: {
             name: {
