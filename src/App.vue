@@ -6,16 +6,50 @@
     <br><br>
     <label for="comment">コメント：</label>
     <textarea id="comment" v-model="comment"></textarea>
+    <br><br>
+    <button @click="createComment">コメントをサーバーに送る</button>
+    
     <h2>掲示板</h2>
   </div>
 </template>
 
 <script>
+//axiosのインポート
+import axios from "axios";
+
 export default {
   data() {
     return {
       name: "",
       comment: ""
+    }
+  },
+  methods: {
+    //axiosにpostでデータを送信するメソッド
+    createComment() {
+      axios.post(
+        "https://firestore.googleapis.com/v1/projects/vuejs-http-38403/databases/(default)/documents/comments",
+        {
+          fields: {
+            name: {
+              stringValue: this.name
+            },
+            comment: {
+              stringValue: this.comment
+            }
+          }
+        }
+      )
+      //成功
+      .then(response => {
+        console.log(response);
+      })
+      //失敗
+      .catch(error => {
+        console.log(error);
+      });
+      this.name = "";
+      this.comment = "";
     }
   }
 }
