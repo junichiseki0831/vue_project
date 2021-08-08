@@ -41,7 +41,8 @@ axios.interceptors.response.use(
 axios.interceptors.request.eject(0);
 axios.interceptors.response.eject(0);
 
-
+//オートログイン実行
+store.dispatch('autoLogin');
 new Vue({
   router,
   store,
