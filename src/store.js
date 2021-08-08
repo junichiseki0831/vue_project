@@ -29,7 +29,7 @@ export default new Vuex.Store({
       if (!idToken) return;
       //トークンの有効期限確認
       const now = new Date();
-      const expiryTimeMs = localStorage.getItem('expirryTimeMs');
+      const expiryTimeMs = localStorage.getItem('expiryTimeMs');
       const isExpired = now.getTime() >= expiryTimeMs;
 
       const refreshToken = localStorage.getItem('refreshToken');
@@ -64,6 +64,16 @@ export default new Vuex.Store({
         //ログイン後掲示板にリダイレクト
         router.push('/');
       });
+    },
+    //ログアウトメソッド
+    logout({ commit }) {
+      commit('updateIdToken', null);
+      //localStorageのデータを削除
+      localStorage.removeItem('idToken');
+      localStorage.removeItem('expiryTimeMs');
+      localStorage.removeItem('refreshToken');
+      //ログインページへ遷移
+      router.replace('/login');
     },
     async refreshIdToken({ dispatch }, refreshToken) {
       await axiosRefresh.post(
@@ -100,10 +110,10 @@ export default new Vuex.Store({
     },
     setAuthData({ commit, dispatch }, authData) {
       const now = new Date();
-      const expirryTimeMs = now.getTime() + authData.expiresIn * 1000;
+      const expiryTimeMs = now.getTime() + authData.expiresIn * 1000;
       commit('updateIdToken', authData.idToken);
       localStorage.setItem('idToken', authData.idToken);
-      localStorage.setItem('expirryTimeMs', expirryTimeMs);
+      localStorage.setItem('expiryTimeMs', expiryTimeMs);
       localStorage.setItem('refreshToken', authData.refreshToken);
       setTimeout(() => {
         dispatch('refreshToken', authData.refreshToken);
