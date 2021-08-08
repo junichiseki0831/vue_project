@@ -22,7 +22,7 @@ export default new Vuex.Store({
   },
   actions: {
     //自動ログイン処理
-    autoLogin({ commit, dispatch }) {
+    async autoLogin({ commit, dispatch }) {
       //localStorageにトークンがあるか確認
       const idToken = localStorage.getItem('idToken');
       //無ければ終了
@@ -35,7 +35,7 @@ export default new Vuex.Store({
       const refreshToken = localStorage.getItem('refreshToken');
       //有効期限切れていたらリフレッシュトークン
       if(isExpired) {
-        dispatch('refreshToken', refreshToken);
+        await dispatch('refreshToken', refreshToken);
       //有効期限切れていたら更新
       } else {
         const expiresInMs = expiryTimeMs - now.getTime();
@@ -65,8 +65,8 @@ export default new Vuex.Store({
         router.push('/');
       });
     },
-    refreshIdToken({ dispatch }, refreshToken) {
-      axiosRefresh.post(
+    async refreshIdToken({ dispatch }, refreshToken) {
+      await axiosRefresh.post(
         '/token?key=AIzaSyDj85gVn62w18mQYwvuGV9Ve3vLwHyKoO4',
         {
           grant_type: 'refresh_token',

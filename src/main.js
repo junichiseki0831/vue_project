@@ -42,9 +42,10 @@ axios.interceptors.request.eject(0);
 axios.interceptors.response.eject(0);
 
 //オートログイン実行
-store.dispatch('autoLogin');
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app');
+store.dispatch('autoLogin').then(() => {
+  new Vue({
+    router,
+    store,
+    render: h => h(App)
+  }).$mount('#app');
+});
