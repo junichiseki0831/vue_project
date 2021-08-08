@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 //認証用のカスタムインスタンス読み込み
 import axios from "./axios-auth";
 import router from "./router";
+import axiosRefresh from "./axios-refresh";
+
 
 Vue.use(Vuex);
 
@@ -19,7 +21,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    login({ commit }, authData) {
+    login({ commit, dispatch }, authData) {
       axios.post(
         //firebaseのログイン用URL
         '/accounts:signInWithPassword?key=AIzaSyDj85gVn62w18mQYwvuGV9Ve3vLwHyKoO4',
@@ -30,7 +32,25 @@ export default new Vuex.Store({
         }
       ).then(response =>{
         commit('updateIdToken', response.data.idToken);
+        setTimeout(() => {
+          dispatch('refreshToken', response.data.refreshToken);
+        }, response.data.expiresIn * 1000);
+        //ログイン後掲示板にリダイレクト
         router.push('/');
+      });
+    },
+    refreshIdToken({ commit, dispatch }, refreshToken) {
+      axiosRefresh.post(
+        '/token?key=AIzaSyDj85gVn62w18mQYwvuGV9Ve3vLwHyKoO4',
+        {
+          grant_type: 'refresh_token',
+          refresh_token: refreshToken
+        }
+      ).then(response => {
+        commit("updateIdToken", response.data.id_token);
+        setTimeout(() => {
+            dispatch('refreshIdToken', response.data.refresh_token);
+        }, response.data.expires_in * 1000);
       });
     },
     register({ commit }, authData) {
@@ -43,6 +63,7 @@ export default new Vuex.Store({
         }
       ).then(response =>{
         commit('updateIdToken', response.data.idToken);
+        //登録後掲示板にリダイレクト
         router.push('/');
       });
     }
