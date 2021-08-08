@@ -9,6 +9,9 @@ export default new Vuex.Store({
   state: {
     idToken: null
   },
+  getters: {
+    idToken: state => state.idToken
+  },
   mutations: {
     updateIdToken(state, idToken) {
       state.idToken = idToken;
@@ -30,7 +33,6 @@ export default new Vuex.Store({
     },
     register({ commit }, authData) {
       axios.post(
-        //firebaseのログイン用URL
         '/accounts:signUp?key=AIzaSyDj85gVn62w18mQYwvuGV9Ve3vLwHyKoO4',
         {
           email: authData.email,

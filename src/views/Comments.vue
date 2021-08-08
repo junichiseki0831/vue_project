@@ -30,11 +30,22 @@ export default {
       posts: []
     }
   },
+  computed: {
+    idToken() {
+      return this.$store.getters.idToken;
+    }
+  },
   //created時にgetでデータを取得する
   created() {
     axios.get(
         //baseURL設定により短縮したURLで記述可能になる
-       "/comments"
+       "/comments",
+       {
+         headers: {
+           //firebaseで支持されて書式
+           Authorization: `Bearer ${this.idToken}`
+         }
+       }
     )
     //成功
     .then(response => {
@@ -55,6 +66,11 @@ export default {
             comment: {
               stringValue: this.comment
             }
+          }
+        }, {
+          headers: {
+            //firebaseで支持されて書式
+            Authorization: `Bearer ${this.idToken}`
           }
         }
       )
